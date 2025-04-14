@@ -1,0 +1,45 @@
+plugins {
+    id("java")
+    id("org.springframework.boot") version "3.1.4"
+    id("io.spring.dependency-management") version "1.1.3"
+}
+
+group = "org.ancrex"
+version = "1.0-SNAPSHOT"
+java.sourceCompatibility = JavaVersion.VERSION_17
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Boot
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-logging'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.17.2")
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+
+
+    implementation 'io.github.resilience4j:resilience4j-spring-boot3:2.1.0'
+
+    compileOnly 'org.projectlombok:lombok'
+
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Kafka
+    implementation("org.springframework.kafka:spring-kafka")
+
+    // Test
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.kafka:spring-kafka-test")
+    testImplementation(platform("org.junit:junit-bom:5.10.0"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+
+}
+
+tasks.test {
+    useJUnitPlatform()
+}

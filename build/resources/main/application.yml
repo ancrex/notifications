@@ -1,0 +1,18 @@
+rest:
+  notification:
+    url: https://drs-product-catalog-backend.melioffice.com/v1/discounts
+
+
+resilience4j.retry:
+  instances:
+    webhookRetry:
+      max-attempts: 3
+      wait-duration: 2s
+      retry-exceptions:
+        - java.io.IOException
+        - org.springframework.web.client.HttpServerErrorException
+        - com.ancrex.notifications.infrastructure.exception.SendEventNotificationException
+      ignore-exceptions:
+        - org.springframework.web.client.HttpClientErrorException$BadRequest
+
+
